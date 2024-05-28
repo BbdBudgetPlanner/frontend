@@ -34,6 +34,7 @@
 .budget-input-container {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -51,6 +52,7 @@
 .budget-input {
     margin-right: 2rem;
     padding: 0.25rem;
+    border: #000 solid 0.05rem;
 }
 
 .budget-input:focus {
