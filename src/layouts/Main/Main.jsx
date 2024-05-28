@@ -1,5 +1,7 @@
 import {Outlet, useLoaderData} from "react-router-dom";
 
+import Header from "../../components/Header/Header.jsx"
+
 export const mainLoader = () => {
     console.log("Home page loaded!");
     return null;
@@ -8,7 +10,7 @@ export const mainLoader = () => {
 const Main = () => {
     return (
         <div>
-            <h1>Main Layout</h1>
+            <Header />
             <main>
                 <Outlet />
             </main>
