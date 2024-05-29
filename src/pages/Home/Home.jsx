@@ -4,6 +4,7 @@ import "./Home.css"
 
 import CreateBudgetForm from "../../components/CreateBudgetForm/CreateBudgetForm.jsx";
 import AddExpenseForm from "../../components/AddExpenseForm/AddExpenseForm.jsx";
+import ExpensesList from "../../components/ExpensesList/ExpensesList.jsx";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -14,6 +15,7 @@ const Home = () => {
             <CreateBudgetForm />
             <AddExpenseForm />
             </div>
+            <ExpensesList />
             <button onClick={() => {
                 navigate("/login")
             }}>Login Page
