@@ -32,10 +32,10 @@ const SignUpForm = () => {
                 />
                 <input
                     className="signup-input"
-                    type="password"
+                    type="text"
                     placeholder="Confirm Password"
-                    value={password}
-                    onChange={(e) => console.log("Do check")}
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                     required
                 />
                 <button className="signup-button" type="submit">Sign Up</button>

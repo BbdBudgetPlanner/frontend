@@ -1,0 +1,92 @@
+.card-container {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+    border: solid #000 0.15rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 2rem;
+    height: auto;
+    width: auto;
+    max-width: fit-content;
+    max-height: fit-content;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.card-heading {
+    margin-right: 3rem;
+    max-width: 10rem;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0rem 1rem 0rem;
+}
+
+.progress-bar {
+    appearance: none;
+    border: none;
+    border-radius: 1rem;
+    height: 1rem;
+    width: 100%;
+    background-color: #F2F2F2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.progress-bar::-webkit-progress-value {
+    background-color: #AAC0AF;
+}
+
+.progress-bar::-moz-progress-bar {
+    background-color: #AAC0AF;
+}
+
+.card-amounts {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.card-amount {
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+.card-amount:nth-child(2) {
+    color: #555;
+}
+
+.card-button-text {
+    padding: 0.45rem 0.5rem;
+    color: #FFF;
+    background: #AAC0AF;
+    border: none;
+    border-radius: 0.25rem;
+}
+
+.card-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0rem 0rem 0rem;
+}
+
+.card-button-text:hover{
+    background: #839791;
+    cursor: pointer;
+}

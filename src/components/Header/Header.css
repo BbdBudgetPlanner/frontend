@@ -1,0 +1,38 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logo-image {
+    width: 4rem;
+    height: auto;
+    margin-right: 1rem;
+}
+
+.logo-text {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.logout-button {
+    padding: 0.45rem 0.5rem;
+    color: #FFF;
+    background: #AAC0AF;
+    border: none;
+    border-radius: 0.25rem;
+}
+
+.logout-button:hover {
+    cursor: pointer;
+    background: #839791;
+}
