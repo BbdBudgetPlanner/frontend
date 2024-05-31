@@ -34,11 +34,9 @@ jobs:
 
       - name: Package artifact
         run: zip -r planfront.zip .
-        working-directory: dist
 
       - name: Upload artifact to S3
         run: aws s3 cp planfront.zip s3://${{ secrets.BUCKET_NAME }}/planfront-${{ github.run_id }}.zip
-        working-directory: dist
         
   deploy:
     runs-on: ubuntu-latest
