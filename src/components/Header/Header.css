@@ -12,6 +12,10 @@
     align-items: center;
 }
 
+.logo-container:hover {
+    cursor: pointer;
+}
+
 .logo-image {
     width: 4rem;
     height: auto;

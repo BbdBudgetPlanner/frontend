@@ -1,0 +1,48 @@
+#budget-name {
+    color: #AAC0AF;
+}
+
+.budget-header-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1.25rem 1rem;
+}
+
+.delete-button {
+    padding: 0.45rem 0.5rem;
+    color: #FFF;
+    background: #AAC0AF;
+    border: none;
+    border-radius: 0.25rem;
+}
+
+.delete-button:hover {
+    background: #839791;
+    cursor: pointer;
+}
+
+.budget-cards-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.budget-card-container {
+    margin-right: 6rem;
+    margin-left: 6rem;
+}
+
+.budget-card-container:nth-child(1) {
+    margin-bottom: 2rem;
+}
+
+.budget-list-container {
+    margin: 3rem 1rem;
+}

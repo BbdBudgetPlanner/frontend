@@ -6,7 +6,6 @@
     border: #000 solid 0.15rem;
     border-radius: 0.5rem;
     padding: 1rem;
-    margin: 2rem;
     height: auto;
     width: auto;
     max-width: fit-content;
@@ -17,6 +16,10 @@
 .expense-header {
     font-size: 1.5rem;
     margin-bottom: 2rem;
+}
+
+.name-span {
+    color: #AAC0AF;
 }
 
 .expense-form {

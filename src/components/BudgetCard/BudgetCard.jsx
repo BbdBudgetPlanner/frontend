@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import "./BudgetCard.css";
 
-const BudgetCard = ({ name, total, spent }) => {
+const BudgetCard = ({ name, total, spent, button }) => {
     let remaining = total - spent;
     let progress = spent / total;
+
+    const navigate = useNavigate();
 
     return (
         <div className="card-container">
@@ -17,9 +20,15 @@ const BudgetCard = ({ name, total, spent }) => {
                 <span className="card-amount">R{spent} spent</span>
                 <span className="card-amount">R{remaining} remaining</span>
             </div>
-            <div className="card-button">
-                <button className="card-button-text">View More</button>
-            </div>
+            {
+                button && (
+                    <div className="card-button">
+                        <button className="card-button-text" onClick={() => {
+                            navigate(`/budget/${name}`)
+                        }}>View More</button>
+                    </div>
+                )
+            }
         </div>
     )
 }
