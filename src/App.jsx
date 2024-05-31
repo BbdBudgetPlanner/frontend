@@ -20,11 +20,13 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <Home />,
+                errorElement: <Error />,
             },
             {
                 path: "budget/:id",
                 element: <Budget />,
                 loader: budgetLoader,
+                errorElement: <Error />,
             },
             {
                 path: "login",

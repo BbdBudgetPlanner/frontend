@@ -1,9 +1,17 @@
-import './Error.css';
+import { useNavigate, useRouteError } from "react-router-dom";
+import "./Error.css";
 
 const Error = () => {
+    const error = useRouteError();
+    const navigate = useNavigate();
+
     return (
-        <div className="Error">
-            <h1 className="Error-Header">Error</h1>
+        <div className="error-container">
+            <h2 className="error-header">Oops! Something went wrong...</h2>
+            <p className="error-message">{error.message || error.statusText}</p>
+            <button className="error-button" onClick={() => {
+                navigate("/");
+            }}>Return Home</button>
         </div>
     )
 }

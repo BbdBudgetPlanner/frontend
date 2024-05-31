@@ -1,13 +1,30 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-.Error {
+.error-container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.Error-Header {
-    color: blueviolet;
+.error-header {
+    font-size: 3rem;
+    margin: 2rem 0rem 0rem 0rem;
+}
+
+.error-message {
+    font-size: 1.5rem;
+    color: black;
+    margin-bottom: 2rem;
+}
+
+.error-button {
+    padding: 0.45rem 0.5rem;
+    color: #FFF;
+    background: #AAC0AF;
+    border: none;
+    border-radius: 0.25rem;
+}
+
+.error-button:hover {
+    background: #839791;
+    cursor: pointer;
 }
