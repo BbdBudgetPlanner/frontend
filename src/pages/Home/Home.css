@@ -3,3 +3,8 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.image {
+    width: 25rem;
+    height: auto;
+}

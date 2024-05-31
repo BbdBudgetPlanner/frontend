@@ -18,7 +18,7 @@
 }
 
 .list-row:nth-child(even) {
-    background-color: #AAC0AF;
+    background-color: var(--primary);
 }
 
 .list-item {

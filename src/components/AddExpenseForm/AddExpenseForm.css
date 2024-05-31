@@ -19,7 +19,7 @@
 }
 
 .name-span {
-    color: #AAC0AF;
+    color: var(--primary);
 }
 
 .expense-form {
@@ -73,17 +73,4 @@
 .expense-button-container {
     display: flex;
     flex-direction: start;
-}
-
-.expense-button {
-    padding: 0.45rem 0.5rem;
-    color: #FFF;
-    background: #AAC0AF;
-    border: none;
-    border-radius: 0.25rem;
-}
-
-.expense-button:hover {
-    background: #839791;
-    cursor: pointer;
 }

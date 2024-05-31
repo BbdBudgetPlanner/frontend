@@ -1,5 +1,5 @@
 #budget-name {
-    color: #AAC0AF;
+    color: var(--primary);
 }
 
 .budget-header-container {
@@ -9,19 +9,6 @@
     align-items: center;
     justify-content: space-between;
     margin: 1.25rem 1rem;
-}
-
-.delete-button {
-    padding: 0.45rem 0.5rem;
-    color: #FFF;
-    background: #AAC0AF;
-    border: none;
-    border-radius: 0.25rem;
-}
-
-.delete-button:hover {
-    background: #839791;
-    cursor: pointer;
 }
 
 .budget-cards-container {

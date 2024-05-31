@@ -4,3 +4,21 @@
   padding: 0;
   font-family: "Poppins", sans-serif;
 }
+
+:root {
+  --primary: #1789FC;
+  --secondary: #296EB4;
+}
+
+button {
+  padding: 0.45rem 0.5rem;
+  color: #FFF;
+  background: var(--primary);
+  border: none;
+  border-radius: 0.25rem;
+}
+
+button:hover {
+  cursor: pointer;
+  background: var(--secondary);
+}

@@ -58,16 +58,3 @@
 .budget-input:focus {
     outline: black solid 0.1rem;
 }
-
-.budget-button {
-    padding: 0.45rem 0.5rem;
-    color: #FFF;
-    background: #AAC0AF;
-    border: none;
-    border-radius: 0.25rem;
-}
-
-.budget-button:hover {
-    background: #839791;
-    cursor: pointer;
-}

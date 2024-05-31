@@ -27,16 +27,3 @@
     font-weight: bold;
     margin: 0;
 }
-
-.logout-button {
-    padding: 0.45rem 0.5rem;
-    color: #FFF;
-    background: #AAC0AF;
-    border: none;
-    border-radius: 0.25rem;
-}
-
-.logout-button:hover {
-    cursor: pointer;
-    background: #839791;
-}

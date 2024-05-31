@@ -2,8 +2,9 @@ import { useNavigate } from "react-router-dom";
 
 import "./Home.css"
 
+import image from "../../assets/image-1.svg";
+
 import CreateBudgetForm from "../../components/CreateBudgetForm/CreateBudgetForm.jsx";
-import AddExpenseForm from "../../components/AddExpenseForm/AddExpenseForm.jsx";
 import BudgetCard from "../../components/BudgetCard/BudgetCard.jsx";
 
 const Home = () => {
@@ -13,7 +14,7 @@ const Home = () => {
         <div>
             <div className="row-container">
             <CreateBudgetForm />
-            <AddExpenseForm />
+            <img src={image} className="image" />
             </div>
             <BudgetCard name={"Groceries"} total={1000.00} spent={750.00} button={true}/>
             <button onClick={() => {
