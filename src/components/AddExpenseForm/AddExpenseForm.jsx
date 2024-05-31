@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import "./AddExpenseForm.css";
 
-const AddExpenseForm = () => {
+const AddExpenseForm = ({ name }) => {
     const [category, setCategory] = useState("");
     const [isCustomSelected, setIsCustomSelected] = useState(false);
 
@@ -19,7 +19,7 @@ const AddExpenseForm = () => {
 
     return (
         <div className="expense-container">
-            <h2 className="expense-header">Add New Expense</h2>
+            <h2 className="expense-header">Add New <span className="name-span">{name}</span> Expense</h2>
             <div className="expense-form">
                 <div className="expense-inputs-container">
                     <div className="expense-row">

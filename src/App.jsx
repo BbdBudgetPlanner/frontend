@@ -5,6 +5,7 @@ import {
 
 import Main, { mainLoader } from "./layouts/Main/Main.jsx";
 import Home from "./pages/Home/Home.jsx";
+import Budget, { budgetLoader } from "./pages/Budget/Budget.jsx";
 import Login, { loginLoader } from "./pages/Login/Login.jsx"
 import SignUp from "./pages/SignUp/SignUp.jsx";
 import Error from "./pages/Error/Error.jsx";
@@ -19,6 +20,13 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <Home />,
+                errorElement: <Error />,
+            },
+            {
+                path: "budget/:id",
+                element: <Budget />,
+                loader: budgetLoader,
+                errorElement: <Error />,
             },
             {
                 path: "login",

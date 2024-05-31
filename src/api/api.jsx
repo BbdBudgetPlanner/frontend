@@ -1,4 +1,4 @@
-const url = "planback.eu-west-1.elasticbeanstalk.com";
+const url = "...";
 
 const getBudgetById = async (id) => {
     const response = await fetch(`${url}/api/usersbudget${id}`);

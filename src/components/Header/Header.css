@@ -12,6 +12,10 @@
     align-items: center;
 }
 
+.logo-container:hover {
+    cursor: pointer;
+}
+
 .logo-image {
     width: 4rem;
     height: auto;
@@ -22,17 +26,4 @@
     font-size: 2rem;
     font-weight: bold;
     margin: 0;
-}
-
-.logout-button {
-    padding: 0.45rem 0.5rem;
-    color: #FFF;
-    background: #AAC0AF;
-    border: none;
-    border-radius: 0.25rem;
-}
-
-.logout-button:hover {
-    cursor: pointer;
-    background: #839791;
 }

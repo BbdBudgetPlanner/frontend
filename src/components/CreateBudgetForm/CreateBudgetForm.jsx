@@ -8,13 +8,14 @@ const CreateBudgetForm = () => {
                 <div className="budget-inputs-container">
                     <div className="budget-input-container">
                         <label className="budget-label">Budget Name</label>
-                        <input className="budget-input" type="text" placeholder="e.g. Groceries" required />
+                        <input className="budget-input" type="text" placeholder="e.g. June 2024" required />
                     </div>
                     <div className="budget-input-container">
                         <label className="budget-label">Amount</label>
                         <input
                             className="budget-input"
                             type="number"
+                            min="0"
                             step="0.01"
                             placeholder="e.g. R1250.00"
                             required

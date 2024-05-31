@@ -1,6 +1,5 @@
 .expenses-container {
     overflow-x: auto;
-    margin: 1rem;
 }
 
 .expenses-list {
@@ -19,7 +18,7 @@
 }
 
 .list-row:nth-child(even) {
-    background-color: #AAC0AF;
+    background-color: var(--tertiary);
 }
 
 .list-item {

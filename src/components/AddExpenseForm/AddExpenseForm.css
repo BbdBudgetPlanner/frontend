@@ -6,7 +6,6 @@
     border: #000 solid 0.15rem;
     border-radius: 0.5rem;
     padding: 1rem;
-    margin: 2rem;
     height: auto;
     width: auto;
     max-width: fit-content;
@@ -17,6 +16,10 @@
 .expense-header {
     font-size: 1.5rem;
     margin-bottom: 2rem;
+}
+
+.name-span {
+    color: var(--primary);
 }
 
 .expense-form {
@@ -70,17 +73,4 @@
 .expense-button-container {
     display: flex;
     flex-direction: start;
-}
-
-.expense-button {
-    padding: 0.45rem 0.5rem;
-    color: #FFF;
-    background: #AAC0AF;
-    border: none;
-    border-radius: 0.25rem;
-}
-
-.expense-button:hover {
-    background: #839791;
-    cursor: pointer;
 }
