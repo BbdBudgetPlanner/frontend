@@ -15,6 +15,7 @@ const CreateBudgetForm = () => {
                         <input
                             className="budget-input"
                             type="number"
+                            min="0"
                             step="0.01"
                             placeholder="e.g. R1250.00"
                             required
