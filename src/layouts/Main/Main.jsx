@@ -10,7 +10,7 @@ export const mainLoader = () => {
 const Main = () => {
     return (
         <div>
-            <Header />
+            <Header logoutButton={true} />
             <main>
                 <Outlet />
             </main>

@@ -47,6 +47,12 @@
     background-color: var(--primary);
 }
 
+.progress-bar::-webkit-progress-bar {
+    border: none;
+    background-color: #F2F2F2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
 .progress-bar::-moz-progress-bar {
     background-color: var(--primary);
 }

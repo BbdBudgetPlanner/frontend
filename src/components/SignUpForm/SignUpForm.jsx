@@ -7,19 +7,31 @@ import { signUp } from "aws-amplify/auth";
 const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { isSignUpComplete, userId, nextStep } = await signUp({
-      username: email,
-      password: password,
-      options: {
-        userAttributes: {
-          email: email,
+    try {
+      const { isSignUpComplete, userId, nextStep } = await signUp({
+        username: email,
+        password: password,
+        options: {
+          userAttributes: {
+            email: email,
+          },
         },
-      },
-    });
+      });
+      navigate("/login");
+    } catch (error) {
+      if (error.message.includes("Member must satisfy regular")) {
+        setError("Password did not conform with policy: Password not long enough");
+      }
+      else {
+        setError(error.message);
+      }
+    }
+    
   };
 
   const navigate = useNavigate();
@@ -44,14 +56,17 @@ const SignUpForm = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <input
-          className="signup-input"
-          type="text"
-          placeholder="Confirm Password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        />
+        <div className="password-requirements">
+        <p>Password Requirements</p>
+        <ul>
+          <li>Minimum 8 characters</li>
+          <li>At least one uppercase letter</li>
+          <li>At least one lowercase letter</li>
+          <li>At least one number</li>
+          <li>At least one special character</li>
+        </ul>
+        </div>
+        {error && <p className="error-text">{error}</p>}
         <button className="signup-button" type="submit">
           Sign Up
         </button>

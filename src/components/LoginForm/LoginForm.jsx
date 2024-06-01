@@ -23,10 +23,18 @@ const LoginForm = () => {
       const session = await fetchAuthSession();
       //This is jwt
       console.log(session.tokens.accessToken.toString());
+
+      const token = session.tokens.accessToken.toString();
+      if (token) {
+        navigate("/");
+      }
+      else {
+        setError("Encountered an error logging in");
+      }
     } catch (error) {
       console.error("Error signing in:", error);
       setError(
-        "Failed to sign in. Please check your credentials and try again."
+        error.message
       );
     }
   };
@@ -50,7 +58,7 @@ const LoginForm = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        {error && <p className="error-message">{error}</p>}
+        {error && <p className="error-text">{error}</p>}
         <button className="login-button" type="submit">
           Login
         </button>
