@@ -33,7 +33,8 @@ jobs:
         run: npm run build
 
       - name: Package artifact
-        run: zip -r planfront.zip .
+        run: zip -r planfront.zip package.json dist/*
+        
 
       - name: Upload artifact to S3
         run: aws s3 cp planfront.zip s3://${{ secrets.BUCKET_NAME }}/planfront-${{ github.run_id }}.zip
