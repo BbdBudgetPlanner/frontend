@@ -1,4 +1,4 @@
-name: Deploy New App Version (Backend)
+name: Deploy New App Version (Frontend)
 
 on:
   push:
@@ -26,21 +26,11 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: eu-west-1
 
-      - name: Install dependecies
-        run: npm install
-
-      - name: Compile
-        run: npm run build
-
-      - name: Move Package file to distribution folder
-        run: cp package.json dist
-
-      - name: Package artifact
-        run: zip -r planfront.zip dist/*
-        
+      - name: Generate deployment package
+        run: zip -r deploy.zip . -x '*.git*'
 
       - name: Upload artifact to S3
-        run: aws s3 cp planfront.zip s3://${{ secrets.BUCKET_NAME }}/planfront-${{ github.run_id }}.zip
+        run: aws s3 cp deploy.zip s3://${{ secrets.BUCKET_NAME }}/planfront-${{ github.run_id }}.zip
         
   deploy:
     runs-on: ubuntu-latest
