@@ -36,25 +36,24 @@
 .login-button {
     padding: 0.35rem 3rem;
     margin: 1rem;
-    color: #FFF;
-    background: #AAC0AF;
-    border: none;
-    border-radius: 0.25rem;
-}
-
-.login-button:hover {
-    background: #839791;
-    cursor: pointer;
 }
 
 .sign-up-route {
     background: none;
+    color: var(--quaternary);
     border: none;
     font-size: 0.75rem;
     margin: 0.75rem;
 }
 
 .sign-up-route:hover {
-    color: #AAC0AF;
+    color: var(--secondary);
     cursor: pointer;
+    background: none;
+}
+
+.error-text {
+    color: var(--delete);
+    margin: 1rem;
+    font-size: 1rem;
 }

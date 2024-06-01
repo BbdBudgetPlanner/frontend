@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import { signOut } from "aws-amplify/auth";
+
 import logo from "../../assets/budget-logo.svg";
 
 import "./Header.css"
 
-const Header = () => {
+const Header = ({ logoutButton }) => {
     const navigate = useNavigate();
 
     return (
@@ -14,7 +16,17 @@ const Header = () => {
                 <img src={logo} alt="Logo" className="logo-image" />
                 <h1 className="logo-text">Budget Planner</h1>
             </div>
-            <button className="logout-button">Logout</button>
+            {
+                logoutButton && (
+                    <>
+                        <button className="logout-button" onClick={async () => {
+                            await signOut().then(
+                                navigate("/login")
+                            )
+                        }}>Logout</button>
+                    </>
+                )
+            }
         </header>
     )
 }

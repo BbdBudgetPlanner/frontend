@@ -36,30 +36,29 @@
 .signup-button {
     padding: 0.35rem 3rem;
     margin: 1rem;
-    color: #FFF;
-    background: #AAC0AF;
-    border: none;
-    border-radius: 0.25rem;
-}
-
-.signup-button:hover {
-    background: #839791;
-    cursor: pointer;
 }
 
 .login-route {
     background: none;
+    color: var(--quaternary);
     border: none;
     font-size: 0.75rem;
     margin: 0.75rem;
 }
 
 .login-route:hover {
-    color: #AAC0AF;
+    color: var(--secondary);
+    background: none;
     cursor: pointer;
 }
 
 .error-message {
     color: #FF0000;
     font-size: 0.75rem;
+}
+
+.password-requirements {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
 }
