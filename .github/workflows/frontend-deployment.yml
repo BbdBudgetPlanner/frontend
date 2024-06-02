@@ -36,16 +36,16 @@ jobs:
     - name: Generate deployment package
       run: zip -r deploy.zip package.json dist/*
 
-    - name: Upload zip
-      uses: actions/upload-artifact@v3
-      with:
-        name: planner-front
-        path: deploy.zip
+    # - name: Upload zip
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: planner-front
+    #     path: deploy.zip
 
-    - name: Download zip
-      uses: actions/download-artifact@v3
-      with:
-        name: planner-front
+    # - name: Download zip
+    #   uses: actions/download-artifact@v3
+    #   with:
+    #     name: planner-front
 
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v22
@@ -56,4 +56,4 @@ jobs:
         environment_name: frontEnd-env 
         region: 'eu-west-1'
         version_label: v${{ github.run_number }}
-        deployment_package: ${{ github.workspace }}/deploy.zip
+        deployment_package: deploy.zip
