@@ -27,16 +27,19 @@ jobs:
         role-session-name: Github-OIDC-TERRAFORM
         audience: sts.amazonaws.com
 
+    - name: Build dist folder
+      run: npm run build
+
     - name: Generate deployment package
       run: zip -r deploy.zip package.json dist/*
 
-    - name: Upload JAR
+    - name: Upload zip
       uses: actions/upload-artifact@v3
       with:
         name: planner-front
         path: deploy.zip
 
-    - name: Download JAR
+    - name: Download zip
       uses: actions/download-artifact@v3
       with:
         name: planner-front
