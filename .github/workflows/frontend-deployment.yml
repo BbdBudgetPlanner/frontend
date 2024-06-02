@@ -17,6 +17,13 @@ jobs:
     - name: Checkout source code
       uses: actions/checkout@v2
 
+    - name: Create .env file
+      run: |
+        echo VITE_AWS_REGION=${{ secrets.VITE_AWS_REGION }} >> .env
+        echo VITE_AWS_USER_POOL_ID=${{secrets.VITE_AWS_USER_POOL_ID }} >> .env
+        echo VITE_AWS_USER_POOL_CLIENT_ID=${{ secrets.VITE_AWS_USER_POOL_CLIENT_ID }} >> .env
+      #working-directory: .
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v3
       id: creds
@@ -35,17 +42,6 @@ jobs:
 
     - name: Generate deployment package
       run: zip -r deploy.zip package.json dist/*
-
-    # - name: Upload zip
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: planner-front
-    #     path: deploy.zip
-
-    # - name: Download zip
-    #   uses: actions/download-artifact@v3
-    #   with:
-    #     name: planner-front
 
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v22
