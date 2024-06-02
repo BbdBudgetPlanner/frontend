@@ -31,14 +31,10 @@ jobs:
 
       - name: Compile
         run: npm run build
-
-      - name: Move Package file to distribution folder
-        run: cp package.json dist
-
-      - name: Package artifact
-        run: zip -r planfront.zip dist/*
         
-
+      - name: Package artifact
+        run: zip -r planfront.zip  package.json dist/*
+        
       - name: Upload artifact to S3
         run: aws s3 cp planfront.zip s3://${{ secrets.BUCKET_NAME }}/planfront-${{ github.run_id }}.zip
         
