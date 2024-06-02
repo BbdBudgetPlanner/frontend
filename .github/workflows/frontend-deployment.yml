@@ -28,7 +28,7 @@ jobs:
         audience: sts.amazonaws.com
 
     - name: Generate deployment package
-      run: zip -r deploy.zip . -x '*.git*'
+      run: zip -r deploy.zip package.json dist/*
 
     - name: Upload JAR
       uses: actions/upload-artifact@v3
