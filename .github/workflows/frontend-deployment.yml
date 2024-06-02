@@ -37,6 +37,9 @@ jobs:
         role-session-name: Github-OIDC-TERRAFORM
         audience: sts.amazonaws.com
 
+    - name: Install dependecies
+      run: npm install
+
     - name: Generate deployment package
       run: zip -r deploy.zip . -x '*.git*' -x 'terraform/*'
 
