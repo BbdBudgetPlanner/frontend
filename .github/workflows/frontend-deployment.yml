@@ -2,7 +2,7 @@ name: Deploy master
 on:
   push:
     branches:
-    - master
+    - main
   workflow_dispatch:
 
 permissions:
@@ -23,6 +23,9 @@ jobs:
         echo VITE_AWS_USER_POOL_ID=${{secrets.VITE_AWS_USER_POOL_ID }} >> .env
         echo VITE_AWS_USER_POOL_CLIENT_ID=${{ secrets.VITE_AWS_USER_POOL_CLIENT_ID }} >> .env
       #working-directory: .
+
+    - name: List target directory contents
+      run: sudo ls -a ${{ github.workspace }}
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v3
