@@ -44,7 +44,7 @@ jobs:
       run: npm run build
 
     - name: Generate deployment package
-      run: zip -r deploy.zip package.json aws-config.js vite.config.js public index.html dist/*
+      run: zip -r deploy.zip package.json aws-config.js vite.config.js public index.html .env dist/*
 
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v22
