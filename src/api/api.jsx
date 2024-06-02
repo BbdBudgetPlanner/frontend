@@ -1,4 +1,20 @@
-const url = "...";
+const url = process.env.REACT_APP_ENDPOINT_URL;
+
+export const getAllBudgets = async (token) => {
+    const response = await fetch(`${url}/api/usersbudget`, {
+        headers: {"Authorization": `Bearer ${token}`}
+    });
+    const data = await response.json();
+    return data;
+}
+
+export const getAllExpenses = async (token) => {
+    const response = await fetch(`${url}/api/usersexpenses`, {
+        headers: {"Authorization": `Bearer ${token}`}
+    });
+    const data = await response.json();
+    return data;
+}
 
 export const getBudgetById = async (token, id) => {
     const response = await fetch(`${url}/api/usersbudget/${id}`, {

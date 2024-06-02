@@ -1,4 +1,5 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import "./Budget.css";
 
@@ -6,13 +7,20 @@ import ExpensesList from "../../components/ExpensesList/ExpensesList.jsx";
 import BudgetCard from "../../components/BudgetCard/BudgetCard";
 import AddExpenseForm from "../../components/AddExpenseForm/AddExpenseForm.jsx";
 
+import { getAllExpenses, getAllCategories } from "../../api/api.jsx"
+
 export const budgetLoader = ({ params }) => {
     console.log(params.id);
     return params.id;
 }
 
 const Budget = () => {
+    const [categoryArray, setCategoryArray] = useState();
+
     const id = useLoaderData();
+
+    const location = useLocation();
+    const { jwt, total, spent } = location.state;
 
     const testArray = [
         { name: "Coffee", price: 125.00, category: "Food", date: "21/05/2024" },
@@ -22,6 +30,21 @@ const Budget = () => {
         { name: "Milk", price: 25.00, category: "Food", date: "23/05/2024" },
     ]
 
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                // const expenses = await getAllExpenses(jwt);
+                await getAllCategories(jwt).then((categories) => {
+                    setCategoryArray(categories);
+                })
+                // setCategoryArray(categories);
+            } catch (error) {
+                console.log(error.message);
+            }
+        };
+        getData();
+    }, []);
+
     return (
         <div className="budget-page-container">
             <div className="budget-header-container">
@@ -30,10 +53,10 @@ const Budget = () => {
             </div>
             <div className="budget-cards-container">
                 <div className="budget-card-container">
-                    <BudgetCard name={"Groceries"} total={1000.00} spent={750.00} button={false} />
+                    <BudgetCard name={id} total={total} spent={spent} button={false} />
                 </div>
                 <div className="budget-card-container">
-                    <AddExpenseForm name={id} />
+                    {categoryArray && <AddExpenseForm budgetName={id} categories={categoryArray} jwt={jwt} budgetId={"1"} />}
                 </div>
             </div>
             <div className="budget-list-container">
