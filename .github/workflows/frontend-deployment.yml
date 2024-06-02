@@ -37,14 +37,8 @@ jobs:
         role-session-name: Github-OIDC-TERRAFORM
         audience: sts.amazonaws.com
 
-    - name: install dependecies
-      run: npm install
-
-    - name: Build dist folder
-      run: npm run build
-
     - name: Generate deployment package
-      run: zip -r deploy.zip package.json aws-config.js vite.config.js public index.html .env dist/*
+      run: zip -r deploy.zip . -x '*.git*' -x 'terraform/*'
 
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v22
