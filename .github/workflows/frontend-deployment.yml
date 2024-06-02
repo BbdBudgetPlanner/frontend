@@ -44,7 +44,7 @@ jobs:
       run: npm run build
 
     - name: Generate deployment package
-      run: zip -r deploy.zip package.json dist/*
+      run: zip -r deploy.zip dist/*
 
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v22
@@ -52,7 +52,7 @@ jobs:
         aws_access_key: ${{ steps.creds.outputs.aws-access-key-id }}
         aws_secret_key: ${{ steps.creds.outputs.aws-secret-access-key }}
         application_name: frontEnd-app
-        environment_name: frontEnd-env 
+        environment_name: frontEnd-env
         region: 'eu-west-1'
         version_label: v${{ github.run_number }}
         deployment_package: deploy.zip
