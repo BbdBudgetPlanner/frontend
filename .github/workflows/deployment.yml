@@ -35,7 +35,7 @@ jobs:
           echo VITE_AWS_REGION=${{ secrets.VITE_AWS_REGION }} >> .env
           echo VITE_AWS_USER_POOL_ID=${{secrets.VITE_AWS_USER_POOL_ID }} >> .env
           echo VITE_AWS_USER_POOL_CLIENT_ID=${{ secrets.VITE_AWS_USER_POOL_CLIENT_ID }} >> .env
-        working-directory: dist/assets
+        working-directory: dist
           
       - name: Delete all objects in S3 bucket
         run: aws s3 rm s3://${{ secrets.BUCKET_NAME }} --recursive
