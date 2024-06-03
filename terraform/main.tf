@@ -1,8 +1,8 @@
 
 resource "aws_s3_bucket" "my-static-website" {
-  bucket = "rotendamantsha" # give a unique bucket name
+  bucket = "bbdplanner" # give a unique bucket name
   tags = {
-    Name = "rotendamantsha"
+    Name = "bbdplanner"
   }
 }
 
