@@ -30,9 +30,12 @@ jobs:
       - name: Build Project
         run: npm run build
 
+      - name: Delete all objects in S3 bucket
+        run: aws s3 rm s3://${{ secrets.BUCKET_NAME }} --recursive
+
       - name: Upload artifact to S3
         run: |
           aws s3 cp assets s3://${{ secrets.BUCKET_NAME }}/assets --recursive
-          aws s3 cp favicon.io s3://${{ secrets.BUCKET_NAME }}/favicon.io
+          aws s3 cp favicon.io s3://${{ secrets.BUCKET_NAME }}/favicon.io --recursive
           aws s3 cp index.html s3://${{ secrets.BUCKET_NAME }}/index.html
         working-directory: dist
