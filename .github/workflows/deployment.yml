@@ -3,9 +3,7 @@ name: Deploy New App Version (Frontend)
 on:
   push:
     branches:
-      - master
-    paths:
-      - 'srctt/**' # Adjust this path as needed
+      - main
   workflow_dispatch:
 
 permissions:
@@ -26,25 +24,15 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: eu-west-1
 
-      - name: Generate deployment package
-        run: zip -r deploy.zip . -x '*.git*'
+      - name: Install dependecies
+        run: npm install
+
+      - name: Build Project
+        run: npm run build
 
       - name: Upload artifact to S3
-        run: aws s3 cp deploy.zip s3://${{ secrets.BUCKET_NAME }}/planfront-${{ github.run_id }}.zip
-        
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v3
-        with:
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-          role-session-name: planfront-build-${{ github.run_id }}
-          aws-region: eu-west-1
-
-      - name: Deploy to Elastic Beanstalk
         run: |
-          aws elasticbeanstalk create-application-version --application-name ${{ secrets.FRONTEND_APP_NAME }} --version-label ${{ github.run_id }} --source-bundle S3Bucket="${{ secrets.BUCKET_NAME }}",S3Key="planfront-${{ github.run_id }}.zip"
-          aws elasticbeanstalk update-environment --application-name ${{ secrets.FRONTEND_APP_NAME }} --environment-name ${{ secrets.FRONTEND_ENV_NAME }} --version-label ${{ github.run_id }}
+          aws s3 cp assets s3://${{ secrets.BUCKET_NAME }}/assets
+          aws s3 cp favicon.io s3://${{ secrets.BUCKET_NAME }}/favicon.io
+          aws s3 cp index.html s3://${{ secrets.BUCKET_NAME }}/index.html
+        working-directory: dist
