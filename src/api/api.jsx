@@ -1,15 +1,16 @@
 const url = process.env.REACT_APP_ENDPOINT_URL;
 
 export const getAllBudgets = async (token) => {
-    const response = await fetch(`${url}/api/usersbudget`, {
+    const response = await fetch(`${url}/api/usersbudgets`, {
         headers: {"Authorization": `Bearer ${token}`}
     });
     const data = await response.json();
     return data;
 }
 
-export const getAllExpenses = async (token) => {
-    const response = await fetch(`${url}/api/usersexpenses`, {
+export const getAllExpenses = async (token, budgetid) => {
+    const response = await fetch(`${url}/api/getitems?budgetid=${budgetid}`, {
+        method: "GET",
         headers: {"Authorization": `Bearer ${token}`}
     });
     const data = await response.json();
@@ -32,11 +33,11 @@ export const getBudgetByName = async (token, name) => {
     return data;
 }
 
-export const createBudget = async (token, userid, name, amount) => {
+export const createBudget = async (token, name, amount) => {
     const response = await fetch(`${url}/api/budget`, {
         method: "POST",
         headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`},
-        body: JSON.stringify({userid, name, amount}),
+        body: JSON.stringify({name, amount}),
     });
     const data = await response.json();
     return data;
@@ -68,13 +69,13 @@ export const createCategory = async (token, category) => {
     return data;
 }
 
-export const createExpenseItem = async (token, budgetid, categoryid, name, price) => {
+export const createExpenseItem = async (token, budgetId, categoryId, name, price) => {
     const response = await fetch(`${url}/api/expenseitem`, {
         method: "POST",
         headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`},
         body: JSON.stringify({
-            budgetid,
-            categoryid,
+            budgetId,
+            categoryId,
             name,
             price,
         }),

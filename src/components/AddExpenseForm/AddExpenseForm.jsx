@@ -2,9 +2,9 @@ import { useState } from "react";
 
 import "./AddExpenseForm.css";
 
-import { createExpenseItem } from "../../api/api.jsx"
+import { createExpenseItem } from "../../api/api.jsx" 
 
-const AddExpenseForm = ({ budgetName, categories, jwt, budgetId }) => {
+const AddExpenseForm = ({ budgetName, categories, jwt, budgetId, addExpense }) => {
     const [category, setCategory] = useState("");
     const [categoryId, setCategoryId] = useState(categories[0].id);
     const [name, setName] = useState("");
@@ -14,11 +14,12 @@ const AddExpenseForm = ({ budgetName, categories, jwt, budgetId }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // const response = await createExpenseItem(jwt, budgetid, categoryId, name, amount);
-        // console.log(response);
-        console.log(categoryId);
-        console.log("Expense Created");
-
+        await createExpenseItem(jwt, budgetId, categoryId, name, amount).then((response) => {
+            console.log(response);
+            addExpense(response);
+            setName("");
+            setAmount("");
+        })
     }
 
     return (
@@ -31,6 +32,7 @@ const AddExpenseForm = ({ budgetName, categories, jwt, budgetId }) => {
                             <label className="expense-label">Expense Name</label>
                             <input
                                 className="expense-input"
+                                value={name}
                                 type="text"
                                 placeholder="e.g. Eggs"
                                 required
@@ -42,6 +44,7 @@ const AddExpenseForm = ({ budgetName, categories, jwt, budgetId }) => {
                             <label className="expense-label">Amount</label>
                             <input
                                 className="expense-input"
+                                value={amount}
                                 type="number"
                                 step="0.1"
                                 min={1}

@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { createBudget } from "../../api/api.jsx"
 
-const CreateBudgetForm = ({ jwt, userid }) => {
+const CreateBudgetForm = ({ jwt, addBudget }) => {
     const [name, setName] = useState("");
     const [amount, setAmount] = useState();
     const [error, setError] = useState();
@@ -17,9 +17,16 @@ const CreateBudgetForm = ({ jwt, userid }) => {
         }
         else {
             setError(undefined);
-            // const response = await createBudget(jwt, userid, name, amount);
-            // console.log(response);
-            console.log("Budget Created");
+            try{
+                await createBudget(jwt, name, amount).then((response) => {
+                    console.log(response);
+                    addBudget(response);
+                    setAmount("");
+                    setName("");
+                })
+            } catch (error) {
+                console.log(error.message);
+            }
         }
     }
 
@@ -30,12 +37,13 @@ const CreateBudgetForm = ({ jwt, userid }) => {
                 <div className="budget-inputs-container">
                     <div className="budget-input-container">
                         <label className="budget-label">Budget Name</label>
-                        <input className="budget-input" onChange={(e) => { setName(e.target.value) }} maxLength={128} type="text" placeholder="e.g. June 2024" required />
+                        <input className="budget-input" value={name} minLength={1} onChange={(e) => { setName(e.target.value) }} maxLength={128} type="text" placeholder="e.g. June 2024" required />
                     </div>
                     <div className="budget-input-container">
                         <label className="budget-label">Amount</label>
                         <input
                             className="budget-input"
+                            value={amount}
                             onChange={(e) => { setAmount(e.target.value) }}
                             type="number"
                             min="1"

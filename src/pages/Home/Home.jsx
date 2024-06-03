@@ -11,66 +11,17 @@ import BudgetCard from "../../components/BudgetCard/BudgetCard.jsx";
 
 import { getAllBudgets } from "../../api/api.jsx"
 
-export const homeLoader = async () => {
-    // const session = await fetchAuthSession({forceRefresh: true});
-    // const token = (session.tokens.accessToken.toString());
-    // const userInfo = await getCurrentUser();
-    // const username = userInfo.username;
-
-    // // Get user's budgets below
-
-    // return {jwt: token, username: username};
-    return null;
-}
-
 const Home = () => {
     const [jwt, setJwt] = useState("");
     const [username, setUsername] = useState("");
+    const [userBudgets, setUserBudgets] = useState([]);
 
     // const userCredentials = useLoaderData()
     const navigate = useNavigate();
 
-    const testArray = [
-        {
-            id: 1,
-            name: "January 2024",
-            amount: 1250.00
-        },
-        {
-            id: 2,
-            name: "February 2024",
-            amount: 150.00
-        },
-        {
-            id: 3,
-            name: "March 2024",
-            amount: 12500.00
-        },
-        {
-            id: 4,
-            name: "April 2024",
-            amount: 100.00
-        },
-        {
-            id: 5,
-            name: "May 2024",
-            amount: 1250.00
-        },
-        {
-            id: 6,
-            name: "June 2024",
-            amount: 1250.00
-        },
-        {
-            id: 7,
-            name: "July 2024",
-            amount: 1250.00
-        },
-    ]
-
-    // if (userCredentials.jwt === undefined) {
-    //     navigate("/login");
-    // }
+    const addBudget = (newBudget) => {
+        setUserBudgets((prevUserBudgets) => [...prevUserBudgets, newBudget]);
+    }
 
     useEffect(() => {
         const checkToken = async () => {
@@ -82,9 +33,10 @@ const Home = () => {
                     console.log("Session found: ", userCredentails.username);
                     setUsername(userCredentails.username);
                     setJwt(token);
-                    // console.log(token);
-                    // const data = await getAllBudgets(token);
-                    // console.log("This is the category data: ", data);
+                    console.log("This is the access token:\n", token);
+                    const data = await getAllBudgets(token);
+                    console.log("This is the budget data: ", data);
+                    setUserBudgets(data);
                     // process data, show as budgetcards
                 }
             } catch {
@@ -99,14 +51,14 @@ const Home = () => {
     return (
         <div>
             <div className="create-container">
-                {jwt && <CreateBudgetForm jwt={jwt} userid={"1295c4e4-70f1-70ac-7132-836ef97a5416"} />}
+                {jwt && <CreateBudgetForm jwt={jwt} addBudget={addBudget} />}
                 <img src={image} className="image" />
             </div>
             <div className="budgets-container">
-                {testArray.map((budget, index) => {
+                {userBudgets.map((budget, index) => {
                     if (jwt) {
                         return (
-                            <BudgetCard jwt={jwt} key={index} name={budget.name} total={budget.amount} spent={750} button={true} />
+                            <BudgetCard jwt={jwt} key={index} id={budget.id} name={budget.name} total={budget.amount} spent={750} button={true} />
                         )
                     }
                 })}
