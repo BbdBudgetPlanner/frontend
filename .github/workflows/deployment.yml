@@ -32,7 +32,7 @@ jobs:
 
       - name: Upload artifact to S3
         run: |
-          aws s3 cp assets s3://${{ secrets.BUCKET_NAME }}/assets
+          aws s3 cp assets s3://${{ secrets.BUCKET_NAME }}/assets --recursive
           aws s3 cp favicon.io s3://${{ secrets.BUCKET_NAME }}/favicon.io
           aws s3 cp index.html s3://${{ secrets.BUCKET_NAME }}/index.html
         working-directory: dist
