@@ -43,5 +43,6 @@ jobs:
       - name: Upload artifact to S3
         run: |
           aws s3 cp assets s3://${{ secrets.BUCKET_NAME }}/assets --recursive
+          aws s3 cp .env s3://${{ secrets.BUCKET_NAME }}/.env
           aws s3 cp index.html s3://${{ secrets.BUCKET_NAME }}/index.html
         working-directory: dist
