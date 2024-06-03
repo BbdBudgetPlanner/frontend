@@ -27,15 +27,14 @@ jobs:
       - name: Install dependecies
         run: npm install
 
-      - name: Build Project
-        run: npm run build
-
       - name: Create .env file
         run: |
           echo VITE_AWS_REGION=${{ secrets.VITE_AWS_REGION }} >> .env
           echo VITE_AWS_USER_POOL_ID=${{secrets.VITE_AWS_USER_POOL_ID }} >> .env
           echo VITE_AWS_USER_POOL_CLIENT_ID=${{ secrets.VITE_AWS_USER_POOL_CLIENT_ID }} >> .env
-        working-directory: dist
+
+      - name: Build Project
+        run: npm run build
           
       - name: Delete all objects in S3 bucket
         run: aws s3 rm s3://${{ secrets.BUCKET_NAME }} --recursive
@@ -43,6 +42,5 @@ jobs:
       - name: Upload artifact to S3
         run: |
           aws s3 cp assets s3://${{ secrets.BUCKET_NAME }}/assets --recursive
-          aws s3 cp .env s3://${{ secrets.BUCKET_NAME }}/.env
           aws s3 cp index.html s3://${{ secrets.BUCKET_NAME }}/index.html
         working-directory: dist
