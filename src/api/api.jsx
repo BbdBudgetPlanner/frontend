@@ -1,4 +1,4 @@
-const url = process.env.REACT_APP_ENDPOINT_URL;
+const url = import.meta.env.VITE_ENDPOINT_URL;
 
 export const getAllBudgets = async (token) => {
     const response = await fetch(`${url}/api/usersbudgets`, {
