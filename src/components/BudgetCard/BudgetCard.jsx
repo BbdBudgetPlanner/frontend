@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./BudgetCard.css";
 
-const BudgetCard = ({ jwt, id, name, total, spent, button }) => {
+const BudgetCard = ({ jwt, id, name, total, spent, button, progressBar }) => {
     let remaining = total - spent;
     let progress = spent / total;
 
@@ -13,18 +13,24 @@ const BudgetCard = ({ jwt, id, name, total, spent, button }) => {
                 <h3 className="card-heading">{name}</h3>
                 <span className="card-total">R{total} Budgeted</span>
             </div>
-            <div className="card-bar">
-                <progress className="progress-bar" value={progress} />
-            </div>
-            <div className="card-amounts">
-                <span className="card-amount">R{spent} spent</span>
-                <span className="card-amount">R{remaining} remaining</span>
-            </div>
+            {
+                progressBar && (
+                    <>
+                        <div className="card-bar">
+                            <progress className="progress-bar" value={progress} />
+                        </div>
+                        <div className="card-amounts">
+                            <span className="card-amount">R{spent} spent</span>
+                            <span className="card-amount">R{remaining} remaining</span>
+                        </div>
+                    </>
+                )
+            }
             {
                 button && (
                     <div className="card-button">
                         <button className="card-button-text" onClick={() => {
-                            navigate(`/budget/${id}`, {state: { jwt, name, total, spent }})
+                            navigate(`/budget/${id}`, { state: { jwt, name, total, spent } })
                         }}>View More</button>
                     </div>
                 )

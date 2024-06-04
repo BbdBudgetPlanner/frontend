@@ -15,16 +15,3 @@
     color: black;
     margin-bottom: 2rem;
 }
-
-.error-button {
-    padding: 0.45rem 0.5rem;
-    color: #FFF;
-    background: #AAC0AF;
-    border: none;
-    border-radius: 0.25rem;
-}
-
-.error-button:hover {
-    background: #839791;
-    cursor: pointer;
-}

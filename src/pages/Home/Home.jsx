@@ -1,10 +1,10 @@
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth";
 import { useEffect, useState } from "react";
 
 import "./Home.css"
 
-import image from "../../assets/image-3.svg";
+import image from "../../assets/image-1.svg";
 
 import CreateBudgetForm from "../../components/CreateBudgetForm/CreateBudgetForm.jsx";
 import BudgetCard from "../../components/BudgetCard/BudgetCard.jsx";
@@ -16,7 +16,6 @@ const Home = () => {
     const [username, setUsername] = useState("");
     const [userBudgets, setUserBudgets] = useState([]);
 
-    // const userCredentials = useLoaderData()
     const navigate = useNavigate();
 
     const addBudget = (newBudget) => {
@@ -30,14 +29,10 @@ const Home = () => {
                 const token = session.tokens.accessToken.toString();
                 if (token) {
                     const userCredentails = await getCurrentUser();
-                    console.log("Session found: ", userCredentails.username);
                     setUsername(userCredentails.username);
                     setJwt(token);
-                    console.log("This is the access token:\n", token);
                     const data = await getAllBudgets(token);
-                    console.log("This is the budget data: ", data);
                     setUserBudgets(data);
-                    // process data, show as budgetcards
                 }
             } catch {
                 navigate("/login");
@@ -45,8 +40,6 @@ const Home = () => {
         };
         checkToken();
     }, []);
-
-    // console.log("Logged in as: ", userCredentials.username);
 
     return (
         <div>
@@ -58,7 +51,7 @@ const Home = () => {
                 {userBudgets.map((budget, index) => {
                     if (jwt) {
                         return (
-                            <BudgetCard jwt={jwt} key={index} id={budget.id} name={budget.name} total={budget.amount} spent={750} button={true} />
+                            <BudgetCard jwt={jwt} key={index} id={budget.id} name={budget.name} total={budget.amount} button={true} progressBar={false} />
                         )
                     }
                 })}

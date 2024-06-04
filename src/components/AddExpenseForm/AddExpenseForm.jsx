@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import "./AddExpenseForm.css";
 
-import { createExpenseItem } from "../../api/api.jsx" 
+import { createExpenseItem } from "../../api/api.jsx"
 
 const AddExpenseForm = ({ budgetName, categories, jwt, budgetId, addExpense }) => {
     const [category, setCategory] = useState("");
@@ -15,7 +15,6 @@ const AddExpenseForm = ({ budgetName, categories, jwt, budgetId, addExpense }) =
         e.preventDefault();
 
         await createExpenseItem(jwt, budgetId, categoryId, name, amount).then((response) => {
-            console.log(response);
             addExpense(response);
             setName("");
             setAmount("");

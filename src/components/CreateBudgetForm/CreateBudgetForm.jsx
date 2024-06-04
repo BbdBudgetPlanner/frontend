@@ -17,9 +17,8 @@ const CreateBudgetForm = ({ jwt, addBudget }) => {
         }
         else {
             setError(undefined);
-            try{
+            try {
                 await createBudget(jwt, name, amount).then((response) => {
-                    console.log(response);
                     addBudget(response);
                     setAmount("");
                     setName("");

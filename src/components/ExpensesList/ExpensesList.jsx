@@ -1,6 +1,8 @@
 import "./ExpensesList.css"
 
-const ExpensesList = ({ expenseList }) => {
+import { deleteExpenseItem } from "../../api/api";
+
+const ExpensesList = ({ expenseList, jwt, deleteExpense }) => {
 
     return (
         <div className="expenses-container">
@@ -27,7 +29,11 @@ const ExpensesList = ({ expenseList }) => {
                             <div className="list-item">{expense.name}</div>
                             <div className="list-item">{expense.price}</div>
                             <div className="list-item">{expense.category.name}</div>
-                            <div className="list-item"><span className="trash-can">🗑️</span></div>
+                            <div className="list-item"><span className="trash-can" onClick={async () => {
+                                await deleteExpenseItem(jwt, expense.id).then(() => {
+                                    deleteExpense(expense.id);
+                                })
+                            }}>🗑️</span></div>
                         </div>
                     ))
                 }
