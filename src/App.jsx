@@ -7,6 +7,7 @@ import Login, { loginLoader } from "./pages/Login/Login.jsx";
 import SignUp from "./pages/SignUp/SignUp.jsx";
 import Error from "./pages/Error/Error.jsx";
 import Confirmation from "./pages/Confirmation/Confirmation.jsx";
+import MFA from "./pages/MFA/MFA.jsx";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,11 @@ const router = createBrowserRouter([
     index: true,
     element: <Login />,
     loader: loginLoader,
+  },
+  {
+    path: "mfa",
+    index: true,
+    element: <MFA />,
   },
 
   {
