@@ -58,3 +58,13 @@ export const deleteExpenseItem = async (token, id) => {
     const data = await response.json();
     return data;
 }
+
+export const createUser = async (token, email) => {
+    const response = await fetch(`${url}/api/user`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
+        body: JSON.stringify({ email }),
+    });
+    const data = await response.json();
+    return data;
+}

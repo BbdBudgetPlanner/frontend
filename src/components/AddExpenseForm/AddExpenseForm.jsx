@@ -32,10 +32,12 @@ const AddExpenseForm = ({ budgetName, categories, jwt, budgetId, addExpense }) =
                             <input
                                 className="expense-input"
                                 value={name}
+                                title="Please only enter letters or numbers"
+                                pattern="[a-zA-Z0-9 ]*"
                                 type="text"
                                 placeholder="e.g. Eggs"
                                 required
-                                maxLength={128}
+                                maxLength={100}
                                 onChange={(e) => { setName(e.target.value) }}
                             />
                         </div>
