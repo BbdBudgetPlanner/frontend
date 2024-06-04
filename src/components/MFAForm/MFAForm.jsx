@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./MFAForm.css";
 import { useNavigate } from "react-router-dom";
 import { fetchAuthSession, confirmSignIn } from "aws-amplify/auth";
+import { createUser } from "../../api/api.jsx";
 import QRCodeCanvas from "qrcode.react";
 
 const MFAForm = ({ secret, username }) => {
@@ -38,13 +39,24 @@ const MFAForm = ({ secret, username }) => {
       });
 
       if (isSignedIn) {
-        setError("");
-        setSuccessMessage(
-          "Authentication successful. Redirecting to home page..."
-        );
-        setTimeout(() => {
-          navigate("/");
-        }, 2000);
+        try {
+          await (fetchAuthSession({ forceRefresh: true })).then(async (response) => {
+            const token = response.tokens.accessToken.toString();
+            if (showQrCode) {
+              await createUser(token);
+            }
+          });
+          setError("");
+          setSuccessMessage(
+            "Authentication successful. Redirecting to home page..."
+          );
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
+        } catch (error) {
+          console.log("received error", error);
+          setError(error.message);
+        }
       }
     } catch (error) {
       console.log("received error", error);

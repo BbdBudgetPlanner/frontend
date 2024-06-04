@@ -1,4 +1,4 @@
-const url = import.meta.env.VITE_ENDPOINT_URL;
+const url = "http://planback.eu-west-1.elasticbeanstalk.com";
 
 export const getAllBudgets = async (token) => {
     const response = await fetch(`${url}/api/usersbudgets`, {
@@ -59,11 +59,10 @@ export const deleteExpenseItem = async (token, id) => {
     return data;
 }
 
-export const createUser = async (token, email) => {
+export const createUser = async (token) => {
     const response = await fetch(`${url}/api/user`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
-        body: JSON.stringify({ email }),
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
     });
     const data = await response.json();
     return data;
