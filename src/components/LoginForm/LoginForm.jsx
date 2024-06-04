@@ -1,41 +1,38 @@
 import { useState } from "react";
-import { Amplify } from "aws-amplify";
 import "./LoginForm.css";
 import { useNavigate } from "react-router-dom";
 import { signIn } from "aws-amplify/auth";
-import { getCurrentUser } from "aws-amplify/auth";
-import { fetchAuthSession } from "aws-amplify/auth";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await signIn({
+      const output = await signIn({
         username: email,
         password: password,
       });
-      const session = await fetchAuthSession();
-      //This is jwt
-      console.log(session.tokens.accessToken.toString());
+      const { nextStep } = output;
+      const username = email;
+      let secret = null;
+      switch (nextStep.signInStep) {
+        // ...
+        case "CONTINUE_SIGN_IN_WITH_TOTP_SETUP":
+          secret = nextStep.totpSetupDetails.sharedSecret;
+          navigate("/mfa", { state: { secret, username } });
 
-      const token = session.tokens.accessToken.toString();
-      if (token) {
-        navigate("/");
-      }
-      else {
-        setError("Encountered an error logging in");
+          break;
+        case "CONFIRM_SIGN_IN_WITH_TOTP_CODE":
+          navigate("/mfa", { state: { secret, username } });
       }
     } catch (error) {
       console.error("Error signing in:", error);
-      setError(
-        error.message
-      );
+      setError(error.message);
     }
   };
 
