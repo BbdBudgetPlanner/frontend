@@ -40,7 +40,7 @@ const MFAForm = ({ secret, username }) => {
 
       if (isSignedIn) {
         try {
-          await (fetchAuthSession({ forceRefresh: true })).then(async (response) => {
+          await (fetchAuthSession()).then(async (response) => {
             const token = response.tokens.accessToken.toString();
             if (showQrCode) {
               await createUser(token);

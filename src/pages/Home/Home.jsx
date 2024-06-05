@@ -25,17 +25,22 @@ const Home = () => {
   useEffect(() => {
     const checkToken = async () => {
       try {
-        const session = await fetchAuthSession({ forceRefresh: true });
-        const token = session.tokens.accessToken.toString();
-        if (token) {
-          const userCredentails = await getCurrentUser();
-          setUsername(userCredentails.username);
-          setJwt(token);
-          const data = await getAllBudgets(token);
-
-          setUserBudgets(data);
-        } else {
+        const session = await fetchAuthSession();
+        if (session.tokens === undefined) {
           navigate("/login");
+        }
+        else {
+          const token = session.tokens.accessToken.toString();
+          if (token) {
+            const userCredentails = await getCurrentUser();
+            setUsername(userCredentails.username);
+            setJwt(token);
+            const data = await getAllBudgets(token);
+  
+            setUserBudgets(data);
+          } else {
+            navigate("/login");
+          }
         }
       } catch (error) {
         console.log(error);

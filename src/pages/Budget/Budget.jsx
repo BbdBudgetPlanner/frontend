@@ -57,7 +57,6 @@ const Budget = () => {
         <div className="budget-page-container">
             <div className="budget-header-container">
                 <h2><span id="budget-name">{name}</span> Budget</h2>
-                <button className="delete-button">Delete Budget</button>
             </div>
             <div className="budget-cards-container">
                 <div className="budget-card-container">

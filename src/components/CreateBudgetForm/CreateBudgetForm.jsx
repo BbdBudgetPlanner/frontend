@@ -36,17 +36,17 @@ const CreateBudgetForm = ({ jwt, addBudget }) => {
                 <div className="budget-inputs-container">
                     <div className="budget-input-container">
                         <label className="budget-label">Budget Name</label>
-                        <input 
-                            className="budget-input" 
-                            value={name} 
-                            title="Please only enter letters or numbers" 
-                            pattern="[a-zA-Z0-9 ]*" 
-                            minLength={1} 
-                            onChange={(e) => { setName(e.target.value) }} 
-                            maxLength={100} 
-                            type="text" 
-                            placeholder="e.g. June 2024" 
-                            required 
+                        <input
+                            className="budget-input"
+                            value={name}
+                            title="Please only enter letters or numbers"
+                            pattern="[a-zA-Z0-9 ]*"
+                            minLength={1}
+                            onChange={(e) => { setName(e.target.value) }}
+                            maxLength={100}
+                            type="text"
+                            placeholder="e.g. June 2024"
+                            required
                         />
                     </div>
                     <div className="budget-input-container">
@@ -57,6 +57,7 @@ const CreateBudgetForm = ({ jwt, addBudget }) => {
                             onChange={(e) => { setAmount(e.target.value) }}
                             type="number"
                             min="1"
+                            max={99999999}
                             step="0.01"
                             placeholder="e.g. R1250.00"
                             required

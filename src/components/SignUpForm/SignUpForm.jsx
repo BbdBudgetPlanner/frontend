@@ -13,7 +13,7 @@ const SignUpForm = () => {
   useEffect(() => {
     const checkToken = async () => {
       try {
-        const session = await fetchAuthSession({ forceRefresh: true });
+        const session = await fetchAuthSession();
         const token = session.tokens.accessToken.toString();
         if (token) {
           navigate("/");
