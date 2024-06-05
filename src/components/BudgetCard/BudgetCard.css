@@ -85,3 +85,17 @@
     justify-content: center;
     margin: 1rem 0rem 0rem 0rem;
 }
+
+.card-over {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.text-over {
+    font-size: 0.85rem;
+    color: var(--delete);
+}

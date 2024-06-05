@@ -9,7 +9,6 @@ const AddExpenseForm = ({ budgetName, categories, jwt, budgetId, addExpense }) =
     const [categoryId, setCategoryId] = useState(categories[0].id);
     const [name, setName] = useState("");
     const [amount, setAmount] = useState();
-    const [isCustomSelected, setIsCustomSelected] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -49,6 +48,7 @@ const AddExpenseForm = ({ budgetName, categories, jwt, budgetId, addExpense }) =
                                 type="number"
                                 step="0.1"
                                 min={1}
+                                max={99999999}
                                 placeholder="e.g. R50.00"
                                 required
                                 inputMode="decimal"
@@ -82,17 +82,6 @@ const AddExpenseForm = ({ budgetName, categories, jwt, budgetId, addExpense }) =
                                 )}
                             </select>
                         </div>
-                        {isCustomSelected && (
-                            <div className="expense-input-container">
-                                <label className="expense-label">Category Name</label>
-                                <input
-                                    className="expense-input"
-                                    type="text"
-                                    placeholder="e.g. Clothes"
-                                    required
-                                />
-                            </div>
-                        )}
                     </div>
                 </div>
                 <div className="expense-button-container">

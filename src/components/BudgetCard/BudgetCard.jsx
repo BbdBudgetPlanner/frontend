@@ -23,6 +23,13 @@ const BudgetCard = ({ jwt, id, name, total, spent, button, progressBar }) => {
                             <span className="card-amount">R{spent} spent</span>
                             <span className="card-amount">R{remaining} remaining</span>
                         </div>
+                        {
+                            (remaining < 0) && (
+                                <div className="card-over">
+                                    <span className="text-over">You are over budget!</span>
+                                </div>
+                            )
+                        }
                     </>
                 )
             }
