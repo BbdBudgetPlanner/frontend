@@ -1,4 +1,4 @@
-const url = "http://planback.eu-west-1.elasticbeanstalk.com";
+const url = "https://d2xe2bxd0d98b3.cloudfront.net";
 
 export const getAllBudgets = async (token) => {
     const response = await fetch(`${url}/api/usersbudgets`, {
