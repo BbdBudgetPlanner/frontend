@@ -9,7 +9,7 @@ export const getAllBudgets = async (token) => {
 }
 
 export const getAllExpenses = async (token, budgetid) => {
-    const response = await fetch(`${url}/api/getitems?budgetid=${budgetid}`, {
+    const response = await fetch(`${url}/api/getitems/${budgetid}`, {
         method: "GET",
         headers: { "Authorization": `Bearer ${token}` }
     });
@@ -51,7 +51,7 @@ export const createExpenseItem = async (token, budgetId, categoryId, name, price
 }
 
 export const deleteExpenseItem = async (token, id) => {
-    const response = await fetch(`${url}/api/deleteitem?id=${id}`, {
+    const response = await fetch(`${url}/api/deleteitem/${id}`, {
         method: "DELETE",
         headers: { "Authorization": `Bearer ${token}` },
     });
